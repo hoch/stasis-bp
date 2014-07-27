@@ -3,14 +3,16 @@
 <html class="no-js">
 
 <head>
-  <title>{doc.title} | Hongchan Choi</title>
-  <meta name="keywords" content="Web Audio API, Web MIDI API, JavaScript, collaboration, creativity, sound synthesis, computer music, music productionm, Chrome, FireFox, Safari">
-  <meta name="description" content="Computer Music meets the Web. Experimental music software and collaborative creativity.">
+  <title>{doc.title} | Stasis</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- START: Stasis stylesheets, DO NOT EDIT -->
   <link rel="stylesheet" href="{doc.path.root}css/stasis-style.min.css">
   <link rel="stylesheet" href="{doc.path.root}css/hljs-style.min.css">
   <script src="{doc.path.root}bower_components/modernizr/modernizr.js"></script>
+  <!-- END: Stasis stylesheets, DO NOT EDIT -->
 </head>
 <body>
 
@@ -25,17 +27,17 @@
       <nav class="top-bar" data-topbar>
         <ul class="title-area">
           <li class="name">
-            <h1><a href="{doc.path.root}">HONGCHAN CHOI</a></h1>
+            <h1><a href="{doc.path.root}">Stasis Field</a></h1>
           </li>
           <li class="toggle-topbar"><a class="menu-icon" href="#">MENU</a></li>
         </ul>
         <section class="top-bar-section">
           <ul class="right">
-            <li {@eq key=doc.location value="about"}class="active"{/eq}>
-              <a href="{doc.path.root}">About</a>
+            <li {@eq key=doc.location value="home"}class="active"{/eq}>
+              <a href="{doc.path.root}">Home</a>
             </li>
-            <li {@eq key=doc.location value="projects"}class="active"{/eq}><a href="{doc.path.root}projects">Projects</a></li>
-            <li {@eq key=doc.location value="artwork"}class="active"{/eq}><a href="{doc.path.root}artwork">Artwork</a></li>
+            <li {@eq key=doc.location value="page-1"}class="active"{/eq}><a href="{doc.path.root}page-1">Page 1</a></li>
+            <li {@eq key=doc.location value="page-2"}class="active"{/eq}><a href="{doc.path.root}page-2">Page 2</a></li>
             <li {@eq key=doc.location value="blog"}class="active"{/eq}><a href="{doc.path.root}posts">Blog</a></li>
           </ul>
         </section>
