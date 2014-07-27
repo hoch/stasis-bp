@@ -1,0 +1,216 @@
+/**
+ * Stasis Site Style
+ *
+ * @version   0.0.3
+ * @note      To modify Foundation-specific settings,
+ *            see `stasis-foundation-settings.scss` file.
+ *            Do not mess with the order of steps.
+ *            Otherwise the sytle won't be applied correctly.
+ */
+
+
+/**** STEP 1: SASS variables: theme and essential element style ****/
+
+// Fonts (incl. Korean)
+$font-sans: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-sans-ko: "Nanum Gothic", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+
+// Color Theme
+$transparent: rgba(#FFF, 0.0);
+$color-body-text: #212121;
+$color-1: #607d8b; // blue gray (theme background)
+$color-2: #03a9f4; // light blue (theme accent 1)
+$color-3: #009688; // teal (theme accent 2)
+
+// Link and Button
+$link-color: $color-2;
+$button-bg-color: scale-color($color-2, $lightness: -50);
+
+// Header and Top-bar
+$header-color: $color-1;
+$header-bg-color: $header-color;
+$header-link-color: scale-color($header-color, $lightness: +80);
+$header-link-bg-color: $header-color;
+$header-link-color-accent: scale-color($header-color, $lightness: +100);
+$header-link-bg-color-accent: scale-color($header-color, $lightness: +25);
+
+
+/**** STEP 2: Font and Foundation 5 import ******/
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,700,300italic,400italic,700italic);
+@import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import "templates/scss/stasis-foundation-settings.scss";
+@import "foundation";
+
+
+/**** STEP 3: Overide Setting for Foundation 5 ****/
+
+.top-bar .name h1 a {
+  padding: 0;
+  color: #FFF;
+}
+
+.top-bar.expanded .title-area {
+  margin-bottom: 1rem;
+}
+
+.top-bar-section {
+  ul {
+    background-color: transparent;
+  }
+}
+
+.breadcrumbs {
+  & {
+    margin: 0rem;
+  }
+  * {
+    font-family: $font-sans;
+    font-size: 0.85rem;
+    line-height: 1.2rem;
+  }
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+
+/**** STEP 4: Stasis-specific styles ****/
+
+header {
+  padding: 0 0;
+  background-color: $header-bg-color;
+}
+
+article {
+  & {
+    background-color: #fff;
+    padding: 3rem 0 3rem 0;
+  }
+  h3 {
+    margin: 2.4rem 0 1.2rem 0;
+  }
+  h4 {
+    margin: 1.8rem 0 0.9rem 0;
+  }
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+  ol, ul {
+    margin-left: 2.2rem;
+  }
+}
+
+footer {
+  padding: 0 0 3rem;
+}
+
+:lang(ko) {
+  font-family: $font-sans-ko;
+}
+
+p:lang(ko) {
+  font-size: 0.95rem;
+  line-height: 1.6rem;
+}
+
+pre {
+  background-color: scale-color($header-color, $lightness: +90);
+  border-radius: 0.4em;
+  font-size: 0.9rem;
+  line-height: 1.25rem;
+  margin-bottom: 1.25rem;
+  padding: 0.75em;
+}
+
+code {
+  font-weight: normal;
+}
+
+.stasis-hero {
+  & {
+    background-color: scale-color($header-color, $lightness: +90);
+    padding-top: 4rem;
+  }
+  h1 {
+    font-size: 3.2rem;
+    text-transform: capitalize;
+    color: #616161;
+  }
+}
+
+img.stasis-profile {
+  display: inline-block;
+  width: 240px;
+  min-width: 240px;
+  border-radius: 0.3em;
+  padding: 0.3rem;
+  border: 1px solid #CCC;
+}
+
+.stasis-container {
+  width: 100%;
+}
+
+.stasis-card {
+  p {
+    font-size: 1rem;
+    text-align: left;
+  }
+  &.box {
+    margin-bottom: 1.2rem;
+  }
+  .tags {
+    font-family: $font-sans;
+    margin-bottom: 0.75rem;
+    color: #8F8F8F;
+    font-size: 0.8rem;
+  }
+  .thumbnails img {
+    margin: 2px 0;
+    box-shadow: 1px 1px 1px #999;
+    display: inline-block;
+  }
+}
+
+.stasis-postinfo {
+  & {
+    font-family: $font-sans;
+    line-height: 1.5rem;
+    margin: 0.5rem 0 2rem;
+  }
+  .date {
+    color: scale-color($body-font-color, $lightness: 35%);
+    margin: 0;
+    font-family: $font-sans;
+    font-size: 0.8rem;
+    line-height: 0.8rem;
+  }
+}
+
+.stasis-blogindex-listitem {
+  div {
+    font-weight: 300;
+    margin: 0 0 1.2rem;
+    color: scale-color($color-1, $lightness: +20);
+  }
+  h5 {
+    margin: 0 0 0.3rem;
+    font-family: $font-sans;
+    font-size: 1.5rem;
+    line-height: 1.6rem;
+  }
+  .date {
+    margin: 0;
+    font-family: $font-sans;
+    font-size: 0.8rem;
+    line-height: 0.8rem;
+  }
+}
+
+.stasis-copyright {
+  color: scale-color($body-font-color, $lightness: +40);
+  font-size: 0.85rem;
+}

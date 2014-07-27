@@ -1,0 +1,26 @@
+{>header doc=./}
+<!-- article start -->
+
+<div class="row">
+  <div class="large-10 large-centered columns">
+
+    <!-- content -->
+    <ul class="no-bullet">
+    {#listitems}
+      <li class="stasis-blogindex-listitem">
+        <div>
+          <h5 {@eq key=language value="ko"}lang="ko"{/eq}>
+            <a href="{path}">{title}</a>
+          </h5>
+          <span class="date">{date}</span> &middot; {#tags}<span class="label success radius uppercase">{.}</span> {/tags}
+          <!-- <p>{excerpt|s}</p> -->
+        </div>
+      </li>
+    {/listitems}
+    </ul>
+
+  </div>
+</div>
+
+<!-- article end -->
+{>footer doc=./}

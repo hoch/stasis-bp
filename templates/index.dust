@@ -1,0 +1,12 @@
+{>header doc=./}
+<!-- article start -->
+
+<div class="row">
+  <div class="large-10 large-centered columns">
+    <!-- content -->
+    {body|s}
+  </div>
+</div>
+
+<!-- article end -->
+{>footer doc=./}

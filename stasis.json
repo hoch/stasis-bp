@@ -1,0 +1,25 @@
+{
+  "path": {
+    "out": "out",
+    "src": "src",
+    "templates": "templates"
+  },
+  "siteinfo": {
+    "version": "0.0.3",
+    "title": "Hongchan @ CCRMA",
+    "author": "Hongchan Choi",
+    "url": "https://ccrma.stanford.edu/~hongchan",
+    "meta": {
+      "keywords": "Web Audio API, Web MIDI API, JavaScript, collaboration, creativity, sound synthesis, computer music, music productionm, Chrome, FireFox, Safari",
+      "description": "Computer Music meets the Web. Experimental music software and collaborative creativity.",
+      "generator": "Stasis 0.0.4"
+    },
+    "lastUpdate": "2014-07-08 00:00"
+  },
+  "sitemap": {
+    "index.html": "about",
+    "artwork": "artwork",
+    "projects": "projects",
+    "posts": "blog"
+  }
+}

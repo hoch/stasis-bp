@@ -1,0 +1,48 @@
+</article>
+
+<!-- footer -->
+<footer>
+  <div class="row">
+    <div class="large-10 large-centered columns">
+      <hr>
+      <div class="row">
+        <div class="small-8 columns">
+          <ul class="breadcrumbs">
+            <li><a href="https://ccrma.stanford.edu/">CCRMA</a></li>
+            <li><a href="https://music.stanford.edu/">Music @ Stanford</a></li>
+            <li><a href="http://www.vstguru.com/">VSTGURU.COM</a></li>
+          </ul>
+          <span class="stasis-copyright">© 2010-2014, Hongchan Choi. Powered by <a href="https://github.com/hoch/stasis">Stasis</a></span>
+        </div>
+        <div class="small-4 columns">
+          <!-- AddThis plugin -->
+          <div class="right addthis_sharing_toolbox"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- container end -->
+</div>
+
+<!-- scripts -->
+<script src="{path.root}bower_components/jquery/dist/jquery.min.js"></script>
+<script src="{path.root}bower_components/foundation/js/foundation.min.js"></script>
+<script>$(document).foundation();</script>
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-7423687-8', 'stanford.edu');
+  ga('send', 'pageview');
+</script>
+
+<!-- AddThis -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-539ae155581f6479"></script>
+
+</body>
+</html>

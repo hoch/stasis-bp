@@ -1,0 +1,122 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<polymer-element name="stasis-dynamic-list">
+  <template>
+    <style>
+      :host {
+        font-family: "Helveltica Neue", sans-serif;
+      }
+      a {
+        text-decoration: none;
+        color: #30A0DF;
+      }
+      a:hover {
+        color: #266FA0;
+      }
+      .tag {
+        font-size: 0.7rem;
+        display: inline-block;
+        text-transform: uppercase;
+        color: #ddd;
+        background-color: #efefef;
+        padding: 6px 8px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      .on {
+        color: #333;
+        background-color: #ddd;
+      }
+      .filter {
+        padding: 0.4rem;
+        margin: 1rem auto;
+        border: 1px solid #efefef;
+      }
+      .no-bullet {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .listitem {
+        font-size: 1.15rem;
+        margin: 0 0 0.9rem 0;
+        padding: 0.4rem;
+      }
+      .hide {
+        display: none;
+      }
+      .info {
+        margin: 0.3rem 0 0 0;
+        color: #666;
+        font-size: 0.7rem;
+        text-transform: capitalize;
+      }
+    </style>
+    <!-- search input -->
+    <div class="filter">
+      <template repeat="{{ key in filter }}">
+        <a><span class="tag {{ { on: key.selected } | tokenList }}" on-click="{{ selectTag }}">
+          {{key.tag | _toUpperCase }}
+        </span></a>
+      </template>
+    </div>
+    <ul class="no-bullet">
+      <template repeat="{{ item in listitems }}">
+        <li class="listitem {{ { hide: item.hidden } | tokenList }}">
+          <a href="{{ item.path }}">{{item.title}}</a>
+          <div class="info">
+            <date>{{ item.date }}</date> &middot; <span><em>{{ item.tags[0] }}</em></span>
+          </div>
+        </li>
+      </template>
+    </ul>
+  </template>
+  <script>
+    Polymer('stasis-dynamic-list', {
+
+      filter: [],
+
+      listitems: [],
+
+      created: function () {
+      },
+
+      filterChanged: function () {
+        for (var i = 0; i < this.listitems.length; i++) {
+          this.listitems[i].hidden = !this._isValid(this.listitems[i]);
+        }
+      },
+
+      setFilter: function (listData) {
+        this.listitems = listData.listitems.slice(0);
+        for (var i = 0; i < listData.tags.length; i++) {
+          this.filter.push({ tag: listData.tags[i], selected: true });
+        }
+      },
+
+      selectTag: function (e, detail, sender) {
+        var tag = e.target.templateInstance.model.key.tag;
+        for (var i = 0; i < this.filter.length; i++) {
+          if (this.filter[i].tag === tag) {
+            this.filter[i].selected = !this.filter[i].selected;
+          }
+        }
+        this.filterChanged();
+      },
+
+      _isValid: function (item) {
+        var _f = this.filter;
+        for (var i = 0; i < _f.length; i++) {
+          if (_f[i].tag === item.tags[0] && _f[i].selected) {
+            return true;
+          }
+        }
+        return false;
+      },
+
+      _toUpperCase: function (string) {
+        return string.toUpperCase();
+      }
+    });
+  </script>
+</polymer-element>

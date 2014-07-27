@@ -1,0 +1,34 @@
+{>header doc=./}
+<!-- article start -->
+<script src="../bower_components/platform/platform.js"></script>
+<link rel="import" href="../polymer-elements/stasis-dynamic-list.html">
+
+<div class="row">
+  <div class="large-10 large-centered columns">
+
+    <stasis-dynamic-list id="dynamic-list"></stasis-dynamic-list>
+
+  </div>
+</div>
+
+<script>
+  function load(url, listEl) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        var listData = JSON.parse(xhr.responseText);
+        listEl.setFilter(listData);
+      }
+    };
+    xhr.open('GET', url, true);
+    xhr.send();
+  }
+
+  window.addEventListener('polymer-ready', function(e) {
+    var dlist = document.getElementById('dynamic-list');
+    load('listdata.json', dlist);
+  });
+</script>
+
+<!-- article end -->
+{>footer doc=./}
