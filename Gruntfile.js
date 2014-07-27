@@ -114,15 +114,15 @@ module.exports = function(grunt) {
       options: {
         args: ['--verbose'],
         recursive: true
-      },
-      remote: {
-        options: {
-          src: './out/',
-          dest: '~/Library/Web',
-          host: 'hongchan@ccrma-gate.stanford.edu',
-          syncDestIgnoreExcl: true
-        }
       }
+      // remote: {
+      //   options: {
+      //     src: './out/',
+      //     dest: 'SOMEWHERE',
+      //     host: 'HOSTNAME',
+      //     syncDestIgnoreExcl: true
+      //   }
+      // }
     }
 
   });
