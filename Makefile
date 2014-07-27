@@ -3,7 +3,7 @@ hdr = "[Stasis]"
 
 all: starting dependencies complete
 
-reset: clean dependencies
+reset: clean dependencies complete
 
 starting:
 	@echo "$(hdr) Starting Installation at..."
@@ -20,8 +20,8 @@ complete:
 
 clean:
 	@echo "$(hdr) Resetting dependencies..."
-	#@rm -rf node_modules/
-	#@rm -rf bower_components/
+	@rm -rf node_modules/
+	@rm -rf bower_components/
 
 testcore:
 	@echo "$(hdr) Testing..."
