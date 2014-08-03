@@ -1,7 +1,7 @@
 ---
-title: "First Post"
-date: 2014-06-01 00:00
-tags: ['trivia', 'thought']
+title: "Second Post"
+date: 2014-06-02 00:00
+tags: ['thought', 'ideas']
 template: 'post'
 ---
 

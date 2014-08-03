@@ -1,13 +1,20 @@
 var Stasis = require('stasis');
+var path = require('path');
 
 function build() {
-  // load config
+
+  // Load config file.
   Stasis.initialize('stasis.json');
-  // collect and render
+
+  // Collect and render.
   var pages = Stasis.createCollection('src/pages/*.md', 'out'),
       posts = Stasis.createCollection('src/posts/**/*.md', 'out/posts');
   Stasis.renderCollection(pages);
   Stasis.renderCollection(posts);
+
+  // Generate blog post data for blog index polymer element.
+  // Note that data generation callback function is exposed for ease of use.
+  // This allows one can create own a polymer element and correspoding object data.
   Stasis.generateCollectionData(
     posts,
     'out/posts/data.json',
@@ -17,10 +24,11 @@ function build() {
         date: doc.date.mdy,
         tags: doc.tags,
         language: doc.language,
-        path: doc.path.dir
+        path: path.relative('out/posts', doc.path.dir)
       };
     }
   );
+
 }
 
 build();

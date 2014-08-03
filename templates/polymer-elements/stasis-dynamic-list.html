@@ -1,31 +1,45 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
 <polymer-element name="stasis-dynamic-list">
+
   <template>
     <style>
       :host {
-        font-family: "Helveltica Neue", sans-serif;
+        font-family: "Roboto", Helveltica, sans-serif;
+      }
+      h5 {
+        margin: 0 0 .3rem;
+        font-size: 1.5rem;
+        line-height: 1.6rem;
+        font-weight: 300;
+        font-style: normal;
       }
       a {
+        color: #03a9f4;
         text-decoration: none;
-        color: #30A0DF;
+        line-height: inherit;
       }
       a:hover {
-        color: #266FA0;
+        color: #0394d2;
       }
       .tag {
-        font-size: 0.7rem;
-        display: inline-block;
-        text-transform: uppercase;
-        color: #ddd;
-        background-color: #efefef;
-        padding: 6px 8px;
-        border-radius: 6px;
-        cursor: pointer;
-      }
-      .on {
+        background-color: #e0e0e0;
         color: #333;
-        background-color: #ddd;
+        border-radius: 3px;
+        text-transform: uppercase;
+        font-weight: 400;
+        text-align: center;
+        text-decoration: none;
+        line-height: 1;
+        white-space: nowrap;
+        display: inline-block;
+        position: relative;
+        margin-bottom: inherit;
+        padding: .25rem .3125rem;
+        font-size: .6875rem;
+      }
+      .off {
+        opacity: 0.5;
       }
       .filter {
         padding: 0.4rem;
@@ -39,75 +53,99 @@
       }
       .listitem {
         font-size: 1.15rem;
-        margin: 0 0 0.9rem 0;
         padding: 0.4rem;
       }
       .hide {
         display: none;
       }
       .info {
-        margin: 0.3rem 0 0 0;
-        color: #666;
-        font-size: 0.7rem;
-        text-transform: capitalize;
+        font-weight: 300;
+        margin: 0 0 0.5rem;
+        color: #7d98a5;
+      }
+      .date {
+        margin: 0;
+        font-size: .8rem;
+        line-height: .8rem;
       }
     </style>
+
     <!-- search input -->
+
     <div class="filter">
       <template repeat="{{ key in filter }}">
-        <a><span class="tag {{ { on: key.selected } | tokenList }}" on-click="{{ selectTag }}">
-          {{key.tag | _toUpperCase }}
-        </span></a>
+        <a><span class="tag {{ { off: key.excluded } | tokenList }}" on-click="{{ selectTag }}">
+          {{ key.tag | _toUpperCase }}</span></a>
       </template>
     </div>
+
     <ul class="no-bullet">
-      <template repeat="{{ item in listitems }}">
+      <template repeat="{{ item in items }}">
         <li class="listitem {{ { hide: item.hidden } | tokenList }}">
-          <a href="{{ item.path }}">{{item.title}}</a>
+          <h5><a href="{{ item.path }}">{{item.title}}</a></h5>
           <div class="info">
-            <date>{{ item.date }}</date> &middot; <span><em>{{ item.tags[0] }}</em></span>
+            <span class="date">{{ item.date }}</span> &middot;
+              <template repeat="{{ tag in item.tags }}">
+                <span class="tag">{{ tag }}</span>
+              </template>
           </div>
         </li>
       </template>
     </ul>
   </template>
+
   <script>
     Polymer('stasis-dynamic-list', {
 
+      tags: [],
+
       filter: [],
 
-      listitems: [],
+      items: [],
 
-      created: function () {
+      loadData: function (url) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            var data = JSON.parse(xhr.responseText);
+            // collect all tags, initialize filter
+            this.items = data;
+            for (var i = 0; i < this.items.length; i++) {
+              for (var t = 0; t < this.items[i].tags.length; t++) {
+                var tag = this.items[i].tags[t];
+                if (this.tags.indexOf(tag) === -1) {
+                  this.tags.push(tag);
+                  this.filter.push({ tag: tag, excluded: false });
+                }
+              }
+            }
+          }
+        }.bind(this);
+        xhr.open('GET', url, true);
+        xhr.send();
       },
 
-      filterChanged: function () {
-        for (var i = 0; i < this.listitems.length; i++) {
-          this.listitems[i].hidden = !this._isValid(this.listitems[i]);
-        }
-      },
-
-      setFilter: function (listData) {
-        this.listitems = listData.listitems.slice(0);
-        for (var i = 0; i < listData.tags.length; i++) {
-          this.filter.push({ tag: listData.tags[i], selected: true });
-        }
-      },
-
+      // change filter by user
       selectTag: function (e, detail, sender) {
         var tag = e.target.templateInstance.model.key.tag;
         for (var i = 0; i < this.filter.length; i++) {
           if (this.filter[i].tag === tag) {
-            this.filter[i].selected = !this.filter[i].selected;
+            this.filter[i].excluded = !this.filter[i].excluded;
           }
         }
         this.filterChanged();
       },
 
+      // callback: when this.filter[] changed
+      filterChanged: function () {
+        for (var i = 0; i < this.items.length; i++) {
+          this.items[i].hidden = !this._isValid(this.items[i]);
+        }
+      },
+
       _isValid: function (item) {
-        var _f = this.filter;
-        for (var i = 0; i < _f.length; i++) {
-          if (_f[i].tag === item.tags[0] && _f[i].selected) {
+        for (var i = 0; i < this.filter.length; i++) {
+          if (this.filter[i].tag === item.tags[0] && !this.filter[i].excluded) {
             return true;
           }
         }

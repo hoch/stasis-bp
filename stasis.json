@@ -11,7 +11,7 @@
     "posts": "blog"
   },
   "siteinfo": {
-    "version": "0.0.3",
+    "version": "0.0.4",
     "title": "Awesome Site",
     "author": "John Doe",
     "url": "yo.com/~johndoe",
@@ -19,6 +19,6 @@
       "keywords": "",
       "description": ""
     },
-    "lastUpdate": "2014-07-27 00:00"
+    "lastUpdate": "2014-08-03 00:00"
   }
 }

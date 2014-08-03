@@ -142,7 +142,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build-style', ['sass', 'cssmin']);
   grunt.registerTask('build-contents', ['execute']);
   grunt.registerTask('build-site', ['clean', 'copy', 'build-style', 'build-contents']);
-  grunt.registerTask('dev', ['build-site', 'connect:out', 'watch:out']);
+  grunt.registerTask('serve', ['build-site', 'connect:out', 'watch:out']);
   grunt.registerTask('publish', ['build-site', 'rsync']);
   grunt.registerTask('default', ['build-site']);
 };
