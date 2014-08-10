@@ -1,6 +1,6 @@
 {
   "name": "stasis-bp",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Boilerplate for Stasis site generator",
   "keywords": [
     "static",
