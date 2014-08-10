@@ -23,10 +23,9 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-execute": "^0.2.1",
     "grunt-gh-pages": "^0.9.1",
-    "grunt-prompt": "^1.1.0",
     "grunt-rsync": "^0.2.1",
     "grunt-sass": "^0.14.0",
-    "stasis": "^0.0.9"
+    "stasis": "^0.0.10"
   },
   "author": "hoch (hongchan.choi@gmail.com)",
   "license": "MIT"

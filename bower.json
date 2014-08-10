@@ -1,6 +1,6 @@
 {
-  "name": "stage",
-  "version": "0.0.1",
+  "name": "stasis",
+  "version": "0.0.2",
   "license": "MIT",
   "ignore": [
     "**/.*",
